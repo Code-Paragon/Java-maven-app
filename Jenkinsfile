@@ -1,16 +1,14 @@
-#!/usr/bin/env groovy
-
 def gv
 
 pipeline {
     agent any
     tools {
-        maven 'Maven'
+    maven 'maven-3.9'
     }
     stages {
         stage("init") {
-            steps {
-                script {
+            steps{
+                script{
                     gv = load "script.groovy"
                 }
             }
@@ -25,7 +23,7 @@ pipeline {
         stage("build image") {
             steps {
                 script {
-                    gv.buildImage()
+                    gv.buildDeployImage()
                 }
             }
         }
