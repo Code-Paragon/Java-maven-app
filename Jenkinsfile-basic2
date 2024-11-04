@@ -3,34 +3,28 @@ def gv
 
 pipeline {
     agent any
-    parameters{
-        choice(name: 'VERSION', choices: ['1.1.2', '1.2.1', '1.2.3'], description: '')
-        booleanParam (name: 'executeTests', defaultValue: true, description: '')
+    tools {
+    maven 'maven-3.9'
     }
     stages {
         stage("init") {
-            steps {
-                script {
+            steps{
+                script{
                     gv = load "script.groovy"
                 }
             }
         }
-        stage("build") {
+        stage("build jar") {
             steps {
                 script {
-                    gv.buildApp()
+                    gv.buildJar()
                 }
             }
         }
-        stage("test") {
-            when {
-                expression {
-                    params.execute == true
-                }
-            }
+        stage("build image") {
             steps {
                 script {
-                    gv.testApp()
+                    gv.buildDeployImage()
                 }
             }
         }
