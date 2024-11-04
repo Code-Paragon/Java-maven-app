@@ -2,8 +2,8 @@
 
 library identifier: 'jenkins-shared-library@master', retriever: mordernSCM(
         [$class: 'GitSCMSource',
-        remote: 'https://github.com/Code-Paragon/jenkins-shared-library.git',
-        credentialsId: 'github-credentials'
+         remote: 'https://github.com/Code-Paragon/jenkins-shared-library.git',
+         credentialsId: 'github-credentials'
         ]
 )
 
