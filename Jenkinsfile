@@ -20,6 +20,7 @@ pipeline {
             steps {
                 script {
                     buildJar()
+                }
             }
         }
         stage("build image") {
